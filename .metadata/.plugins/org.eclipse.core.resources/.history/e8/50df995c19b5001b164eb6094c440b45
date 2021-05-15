@@ -1,0 +1,124 @@
+package com.fatec.cap09;
+
+import org.junit.Test;
+import org.junit.Before;
+import org.junit.After;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.Keys;
+import java.util.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class REQ01MantemLivrosTests {
+  private WebDriver driver;
+  private Map<String, Object> vars;
+  JavascriptExecutor js;
+  @Before
+  public void setUp() {
+      System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+      driver = new ChromeDriver();
+    js = (JavascriptExecutor) driver;
+    vars = new HashMap<String, Object>();
+  }
+  @After
+  public void tearDown() {
+    driver.quit();
+  }
+ /* @Test
+  public void testedocarai() throws InterruptedException {
+     driver = new ChromeDriver();
+    driver.get("https://ts-scel.herokuapp.com/login");
+    Thread.sleep(3000);
+    driver.manage().window().setSize(new Dimension(550, 695));
+    driver.findElement(By.name("username")).click();
+    driver.findElement(By.name("username")).sendKeys("maria");
+    driver.findElement(By.name("password")).click();
+    driver.findElement(By.name("password")).sendKeys("456");
+    driver.findElement(By.cssSelector("button")).click();
+    Thread.sleep(4000);
+    driver.findElement(By.linkText("Alunos")).click();
+    Thread.sleep(3000);
+    driver.findElement(By.id("ra")).click();
+    driver.findElement(By.id("ra")).sendKeys("1235489");
+    Thread.sleep(3000);
+    driver.findElement(By.id("nome")).click();
+    driver.findElement(By.id("nome")).sendKeys("jose silva");
+    Thread.sleep(3000);
+
+    driver.findElement(By.id("email")).click();
+    driver.findElement(By.id("email")).sendKeys("lima@lima");
+    Thread.sleep(3000);
+    driver.findElement(By.id("cep")).click();
+    driver.findElement(By.id("cep")).sendKeys("03725000");
+    Thread.sleep(3000);
+    driver.findElement(By.cssSelector(".btn:nth-child(1)")).click();
+    Thread.sleep(3000);
+    driver.findElement(By.id("ra")).click();
+    driver.findElement(By.id("ra")) .clear();
+    driver.findElement(By.id("ra")) .sendKeys("123548");
+    Thread.sleep(3000);
+
+    driver.findElement(By.cssSelector(".btn:nth-child(1)")).click();
+    Thread.sleep(3000);
+
+    driver.findElement(By.id("ra")).click();
+    driver.findElement(By.id("ra")) .clear();
+    driver.findElement(By.id("ra")).sendKeys("1235");
+    Thread.sleep(3000);
+
+    driver.findElement(By.cssSelector(".btn:nth-child(1)")).click();
+    Thread.sleep(3000);
+    driver.findElement(By.linkText("Excluir")).click();
+  }
+  */
+  @Test
+  public void TestCadastroComSucesso() {
+
+	    driver.get("https://ts-scel.herokuapp.com/login");
+	    driver.manage().window().setSize(new Dimension(550, 697));
+	    driver.findElement(By.cssSelector(".form")).click();
+	    driver.findElement(By.name("username")).click();
+	    driver.findElement(By.name("username")).sendKeys("jose");
+	    driver.findElement(By.name("password")).click();
+	    driver.findElement(By.name("password")).sendKeys("123");
+	    driver.findElement(By.cssSelector("button")).click();
+	    awaitSeconds();
+	    driver.findElement(By.linkText("Livros")).click();
+	    driver.findElement(By.id("isbn")).click();
+	    driver.findElement(By.id("isbn")).sendKeys("5987");
+	    awaitSeconds();
+	    driver.findElement(By.id("autor")).click();
+	    driver.findElement(By.id("autor")).sendKeys("jose salamagro");
+	    awaitSeconds();
+	    driver.findElement(By.id("titulo")).click();
+	    driver.findElement(By.id("titulo")).click();
+	    {
+	      WebElement element = driver.findElement(By.id("titulo"));
+	      Actions builder = new Actions(driver);
+	      builder.doubleClick(element).perform();
+	    }
+	    awaitSeconds();
+	    driver.findElement(By.id("titulo")).sendKeys("pogramacao vol 2");
+	    driver.findElement(By.cssSelector(".btn:nth-child(1)")).click();
+	    awaitSeconds();
+	    driver.findElement(By.linkText("Excluir")).click();
+
+  }
+  
+  public void awaitSeconds() {
+	    try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+  }
+}
